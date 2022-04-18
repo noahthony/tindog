@@ -172,6 +172,9 @@ nav li{
 .hero{
     text-align: center;
 }
+.hero img{
+    width: 90%;
+}
 
 .btn-download{
     padding: .5em .75em;
