@@ -169,6 +169,10 @@ nav li{
     line-height: 1.5;
 }
 
+.hero{
+    text-align: center;
+}
+
 .btn-download{
     padding: .5em .75em;
     margin: 1rem;
