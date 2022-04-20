@@ -173,6 +173,10 @@ nav li{
     text-align: center;
 }
 
+.hero img{
+    width: 95%;
+}
+
 .btn-download{
     padding: .5em .75em;
     margin: 1rem;
@@ -207,6 +211,10 @@ nav li{
 
 .feature-card{
     margin-bottom: 2rem;
+}
+
+.feature-card:hover > .feature-card-icon{
+    color: var(--accent-1);
 }
 
 .feature-card-icon{
@@ -280,6 +288,7 @@ nav li{
 }
 
 
+
 .pricing-card-title{
     background: rgb(163, 163, 163);
     padding: .5em 0;
@@ -326,6 +335,7 @@ footer{
 }
 .social-icon{
     margin-right: 1.5rem;
+    margin-left: 1.5rem;
     text-decoration: none;
     color: #000;
     font-size: 1.1rem;
@@ -428,6 +438,26 @@ header{
     margin-right: 1rem;
     display: flex;
     flex-direction: column;
+}
+.pricing-card:hover{
+    transform: scale(1.03);
+    transition: transform 300ms ease-in-out;
+}
+
+.pricing-card::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: -5px 5px 1rem rgb(105, 105, 105);  
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+.pricing-card:hover::after{
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
 }
 
 .card-footer{
