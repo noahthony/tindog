@@ -1,155 +1,97 @@
+/* ============ Main setup ============= */
+
+:root{
+
+    /* light colour theme */
+    --primary: whitesmoke;
+    --secondary: #202124;
+    --accent-1: #ff4c68;
+    --accent-2: #fc768a;
+    --bg-gradient: linear-gradient(var(--accent-1), var(--accent-2)/*,#fc768a*/);
+    --light-text: rgb(102, 100, 100);
+}
+
+/* box sizing reset */
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font-family: "Montserrat";
+}
+
+
+/* ========== General layout setup ============= */
+
+header,
+section,
+footer{
+    display: grid;
+    grid-template-columns: 1fr 80% 1fr;
+}
+
+header{
+    padding-top: 2em;
+    background: var(--bg-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+.header-content,
+.section-content,
+.footer-content{
+    grid-column: 2/3;
+}
+
+
 /* 
-    main css file 
-    author: Noah Thony
-    content: main layout and elements design
+    Design: mobile first design 
+    taking it easier on the mobile and speed up performance
  */
 
-/* ============================================================ */
+
+ /* =============== Header Design =================== */
 
 
-/* ===== Main setup ===== */
+ /* --------------- Nav bar design ------------------ */
 
- :root{
-     /* ligt color theme */
-     --primary: whitesmoke;
-     --secondary: #202124;
-     --accent-1: #ff4c68;
-     --accent-2: #fc768a;
-     --bg-gradient: linear-gradient(#ff4c68, #fc768a);
- }
-
-/* box sizing reset  */
-
- *,
- *::before,
- *::after{
-     box-sizing: border-box;
- }
-
-
-/* ===== General layout Design ===== */
-
- body{
-     margin: 0;
-     font-family: "Montserrat";
- }
-
- header{
-     background: var(--bg-gradient);
-     padding: 2em 0 0;
-     position: relative;
-     overflow: hidden;
- }
-
- header,
- section,
- footer{
-     display: grid;
-     grid-template-columns: 1fr 80% 1fr;
- }
-
- .header-content,
- .section-content,
- .footer-content{
-     grid-column: 2 / 3;
- }
-
-/* =====   header design   ===== */
-nav{
+ nav{
     display: flex;
     position: relative;
     align-items: center;
+    justify-content: space-between;
     flex: 1;
-    gap: 1rem;
     padding: 0;
     margin: 0 0 4rem;
-}
+    /* border: 1px solid #000; */
+ }
 
-nav li{
-    list-style-type: none;
-}
 
-.logo{
-    font-size: 2.5rem;
-    font-family: "Ubuntu";
-    text-decoration: none;
-    color: var(--primary);
-}
-
-/* -----   navigation toggle system    -----  */
-
-.nav-toggle{
-    display: none;
-}
-
-.nav-toggle-label,
-.main-menu{
+ .main-menu{
+    background-color: var(--secondary);
+    border-radius: 5px;
+    margin: 0;
+    padding: 3rem 1rem 1rem;
     position: absolute;
     right: 0;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-toggle-label{
-    top: 0;
-    height: 100%;
-    margin-right: 1rem;
-}
-
-.nav-toggle-label span,
-.nav-toggle-label span::after,
-.nav-toggle-label span::before{
-    display: block;
-    background: var(--secondary);
-    height: 3px;
-    width: 2rem;
-    border-radius: 3px;
-    position: relative;
-}
-
-.nav-toggle-label span::before,
-.nav-toggle-label span::after{
-    content:'';
-    position: absolute;
-}
-.nav-toggle-label span::before{
-    bottom: 7px;
-}
-
-.nav-toggle-label span::after{
-    top: 7px;
-}
-
-.nav-toggle:checked ~ .main-menu{
-    transform: scale(1,1);
-}
-
-.nav-toggle:checked ~ .main-menu a{
-    opacity: 1;
-    transition: opacity 300ms ease-in-out 250ms;
-}
-
-
-
-.main-menu{
-    background: var(--secondary);
-    margin: 0;
-    padding: 1rem;
-    border-radius: 5px;
-    top: 100%;
-    transform: scale(1,0);
-    transform-origin: top;
+    top: 30%;
+    transform: scale(0,0);
+    transform-origin: top right;
     transition: transform 400ms ease-in-out;
-}
 
+ }
 .main-menu-item{
+    list-style: none;
     margin: 0 1rem 1rem;
     text-transform: capitalize;
 }
-
 .main-menu-item a{
     text-decoration: none;
-    font-family: "Montserrat-Thin";
+    font-family: 'Montserrat-Thin', sans-serif;
     color: var(--primary);
     font-size: 1.2rem;
     opacity: 0;
@@ -157,15 +99,88 @@ nav li{
 }
 
 
-/* title design */
-/* .banner{
-    text-align: center;
-} */
+.logo{
+    font-family: "Ubuntu";
+    font-size: 2.5rem;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+
+/* ------------------------- nav toggle system setup -------------------------- */
+
+.toggle{
+    display: none;
+}
+.toggle:checked ~ .main-menu{
+    transform: scale(1,1);
+
+}
+
+.nav-toggle-label{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* creating hamburger menu */
+
+.nav-toggle-label,
+.nav-toggle-label::before,
+.nav-toggle-label::after{
+    display: block;
+    background-color: var(--primary);
+    height: 3px;
+    width: 2rem;
+    border-radius: 3px;
+    position: relative;
+    z-index: 1;
+
+    transition: transform 350ms linear, opacity 250ms linear;
+}
+
+.nav-toggle-label::before,
+.nav-toggle-label::after{
+    content: '';
+    position: absolute;
+}
+.nav-toggle-label::before{
+    bottom: 7px;
+}
+.nav-toggle-label::after{
+    top: 7px;
+}
+
+.toggle:checked ~ .main-menu a{
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+}
+
+/* Hamburger menu animation  */
+
+.toggle:checked ~ .nav-toggle-label{
+    transform: rotate(45deg) scale(.7);
+
+}
+
+.toggle:checked ~ .nav-toggle-label::before{
+    transform: rotate(90deg) translate(6px);
+}
+.toggle:checked ~ .nav-toggle-label::after{
+    opacity: 0;
+}
+
+/* --------------- Banner design ------------------ */
+
+
 
 .title h2{
     color: var(--primary);
-    font-size: 3.5rem;
     font-family: "Montserrat-Black";
+    font-size: 3.5rem;
     line-height: 1.5;
 }
 
@@ -174,43 +189,21 @@ nav li{
 }
 
 .hero img{
-    width: 95%;
+    width: 60%;
 }
 
-.btn-download{
-    padding: .5em .75em;
-    margin: 1rem;
-    font-size: 1rem;
-    border-radius: .5rem;
-    color: var(--primary);
-}
 
-.ios{
-    background: var(--secondary);
-    border: 1px solid #000;
-}
+/* ================= Main Content Design ======================== */
 
-.ggl{
-    background: none;
-    border: 1px solid #fff;
-}
-.ggl:hover{
-    background: #fff;
-    color: #000;
-}
+/* -------------- features section design ------------------------ */
 
-/* ==================== main content design ======================= */
-
-
-/* feature section design  */
-
-#features .section-content{
+#feature .section-content{
     padding: 5em 0;
     text-align: center;
 }
 
 .feature-card{
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .feature-card:hover > .feature-card-icon{
@@ -221,24 +214,16 @@ nav li{
     font-size: 3rem;
     color: var(--accent-2);
 }
-.feature-card-title{
-    font-size: 1.2rem;
-    font-family: "Montserrat-Bold";
-    margin-top: 1rem;
+
+
+/* --------------- Testimonials section design ------------- */
+
+#testimonials, #press{
+    background-color: var(--accent-2);
 }
 
-.feature-card-content{
-    color: rgb(102, 100, 100);
-}
-
-
-/* testimonial section design  */
-
-#testimonials{
-    background: var(--accent-2);
-    text-align: center;
+#testimonials .section-content{
     color: var(--primary);
-    padding: 3em 0;
 }
 
 .testimonial-card h2{
@@ -255,226 +240,326 @@ nav li{
 }
 
 .user-profile img{
-    border-radius: 100%;
+    border-radius: 50%;
     width: 7rem;
     margin: 1rem;
 }
 
 #press{
-    background: var(--accent-2);
     padding-bottom: 2rem;
 }
 
 #press .section-content{
     flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#press .section-content > *{
+    width: 50%;
 }
 
 
-/* pricing section design  */
+/* ------------------ Pricing section design ----------------- */
 
 #pricing{
-    text-align: center;
-    padding: 3em 0;
+    padding:  3em 0;
 }
-.cards-row{
+
+.pricing-cards-row{
     padding-top: 1em;
 }
 
 .pricing-card{
     border: 1px solid grey;
-    border-radius: .3rem;
-    margin-bottom: 1.5rem;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
     padding-bottom: 1rem;
 }
-
-
-
 .pricing-card-title{
-    background: rgb(163, 163, 163);
-    padding: .5em 0;
+    background-color: rgb(163, 163, 163);
+    padding: .4em 0;
+    border-radius: .5rem .5rem 0 0;
 }
-.card-footer button{
+.pricing-card-price{
+    margin: 1rem 0 2rem;
+}
+
+.pricing-card-footer button{
     display: block;
     width: 80%;
     margin: auto;
     padding: 1em;
-    border-radius: 3px;
+    border-radius: 5px;
     border: 1px solid var(--secondary);
-    
-}
-
-.card-signup{
-    background: var(--secondary);
-    color: #fff;
-}
-
-.white{
-    background: #fff;
-    color: #000;
 }
 
 
-/* CTA section design  */
+
+/* ------------------ cta section design ----------------- */
 
 #cta{
-    background: var(--bg-gradient);
-    text-align: center;
-    padding: 5rem 0 5rem;
+    background-color: var(--accent-1);
 }
 
-#cta h2{
-    font-family: "Montserrat-Black";
-    font-size: 3rem;
-    color: var(--primary);
-    margin: 0 auto 3rem;
+#cta .section-content{
+    margin: 3rem auto;
 }
+#cta h2{
+    color: var(--primary);
+    font-family: 'Montserrat-Black';
+    font-size: 3rem;
+}
+
+
+/* ================= Footer Content Design ======================== */
+
 
 footer{
-    padding: 4rem 0;
-    text-align: center;
+    padding: 2em 0
+}
+
+/* ----------------- social icons design ------------------------- */
+
+footer a{
+    text-decoration: none;
 }
 
 .social-icon{
-    margin-right: 1.5rem;
-    margin-left: 1.5rem;
-    text-decoration: none;
-    color: #000;
-    font-size: 1.1rem;
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 0 .5em;
+    font-size: 1.5rem;
+    color: var(--secondary);
 }
 
-/* ====================================================================== */
-/*                           LARGE SCREEN LAYOUT                          */
-/* ====================================================================== */
 
+
+
+
+
+/* ======================================================== */
+/*                  MEDIUM SCREEN LAYOUT                    */
+/* ======================================================== */
+
+@media screen and (min-width: 768px) {
+
+    
+}
+
+/* ======================================================== */
+/*                  LARGE SCREEN LAYOUT                    */
+/* ======================================================== */
 
 @media screen and (min-width: 992px) {
+
+    /* ============== Header Design ======================= */
+
+    /* -------------- main menu design -------------------- */
+    .nav-toggle-label{
+        display: none;
+    }
+    .main-menu{
+        all: unset;
+        color: var(--primary);
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .main-menu-item{
+        margin-left: 2rem;
+        margin-bottom: 0;
+    }
+    .main-menu a{
+        opacity: 1;
+        position: relative;
+    }
+
+    .main-menu a:hover{
+        color: var(--secondary);
+    }
+    .main-menu a::before{
+        content: '';
+        height: 3px;
+        display: block;
+        background-color: var(--secondary);
+        position: absolute;
+        bottom: -.5rem;
+        left: 0;
+        right: 0;
+        transform: scale(0,1);
+        transition: transform 200ms ease-in-out;
+    }
+    .main-menu a:hover::before{
+        transform: scale(1,1);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* -------------- banner design ----------------------- */
+
+    .banner{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero img{
+        transform: rotate(25deg);
+    }
+
+
+    /* ============= Main Content Design =================== */
+
+    /* ------------- Feature section design ---------------- */
+
+    .cards-row{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .feature-card{
+        width: 30%;
+        padding: .5em;
+        margin: 0;
+    }
+
+    /* ------------- Testimonials section ------------------ */
+
+
+    /* ------------- Pricing section ---------------------- */
+
+    .pricing-cards-row{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .pricing-card{
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        transform: scale(1);
+        transition: transform 250ms ease-in-out;
+    }
+
+    .pricing-card:hover{
+        transform: scale(1.04);
+        transition: transform 150ms ease-in-out;
+    }
+    .pricing-card-footer{
+        margin: auto 0 0;
+    }
+
+
+    /* ================= footer Content Design ======================== */
+
+    /* ----------------- Social icon design -------------------------- */
+
+    .social-icon{
+        transform: scale(1);
+        transition: transform 250ms ease-in-out;
+    }
+    .social-icon:hover{
+        color: var(--accent-1);
+        transform: scale(1.3);
+        transition: transform 250ms ease-in-out;
+    }
+
+
+
+
+
+
+
     
-/* header design  */
-
-header{
-    padding: 5em 0 3em;
 }
 
-/* navigation toggle system off  */
 
-.nav-toggle-label{
-    display: none;
-}
+/* ======================================================== */
+/*                  EXTRA LARGE SCREEN LAYOUT               */
+/* ======================================================== */
 
-.main-menu{
-    all: unset;
-    color: #fff;
-    margin: auto 0 auto auto;
-    display: flex;
-    justify-content: flex-end;
-}
 
-.main-menu li{
-    margin-left: 2rem;
-    margin-bottom: 0;
-}
+@media screen and (min-width: 1366px) {
 
-.main-menu a{
-    opacity: 1;
-    position: relative;
-}
-.main-menu a:hover{
-    color: #000;
-}
+    /* ==================== Header Design ================== */
 
-.main-menu a::before{
-    content: '';
-    height: 5px;
-    display: block;
-    background: #fff;
-    position: absolute;
-    bottom: -.6rem;
-    left: 0;
-    right: 0;
-    transform: scale(0, 1);
-    transition: transform 200ms ease-in-out;
-}
+    /* -------------------- banner design ------------------ */
 
-.main-menu a:hover::before{
-    transform: scale(1, 1);
-}
-
-/* banner design */
-.banner{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-.hero{
-    /* text-align: center; */
-    position: relative;
-}
-
-.hero img{
-    width: 60%;
-    transform: rotate(25deg);
-    position: absolute;
-    right: 25%;
-}
-
-/* feature section design */
-
-.cards-row{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#features .cards-row{
-    justify-content: space-between;
-}
-
-.feature-card{
-    width: 30%;
-    margin: 0;
-}
-
-/* pricing section design  */
-
-.pricing-card{
-    flex: 1;
-    margin-right: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-.pricing-card:hover{
-    transform: scale(1.03);
-    transition: transform 300ms ease-in-out;
-}
-
-.pricing-card::after{
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: -5px 5px 1rem rgb(105, 105, 105);  
-    opacity: 0;
-    transition: opacity 300ms ease-in-out;
-}
-.pricing-card:hover::after{
-    opacity: 1;
-    transition: opacity 300ms ease-in-out;
-}
-
-.card-footer{
-    margin-bottom: 0;
-    margin-top: auto;
+    
+    
 }
 
 
 
-.social-icon:hover{
-    color: var(--accent-1);
+/* ======================================================== */
+/*                  UTILLITY CLASSES                        */
+/* ======================================================== */
+
+
+.btn-download{
+    font-size: 1rem;
+    padding: .5em .75em;
+    margin: 1rem;
+    border-radius: .6rem;
+    color: var(--primary);
 }
 
+.ios{
+    background: var(--secondary);
+    border: 1px solid #000;
+}
+.ios:hover{
+    background: var(--primary);
+    color: var(--secondary);
+}
+.ggl{
+    background: none;
+    border: 1px solid var(--primary);
+}
 
+.ggl:hover{
+    background: var(--primary);
+    color: var(--secondary);
+}
 
+.card-title{
+    font-size: 1.5rem;
+    font-family: "Montserrat-bold";
+    margin-top: 1rem;
+}
 
+.card-content{
+    color: var(--light-text);
+}
 
+.center{
+    text-align: center;
+}
 
+.bold{
+    font-weight: 900;
+    font-size: 1.5em;
+}
+
+.white-btn{
+    background: var(--primary);
+    color: var(--secondary);
+}
+.dark-btn{
+    background: var(--secondary);
+    color: var(--primary);
 }
