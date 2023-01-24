@@ -75,9 +75,9 @@ header{
     background-color: var(--secondary);
     border-radius: 5px;
     margin: 0;
-    padding: 3rem 1rem 1rem;
+    padding: 5rem 3rem 5rem 2rem;
     position: absolute;
-    right: 0;
+    right: -5rem;
     top: 30%;
     transform: scale(0,0);
     transform-origin: top right;
@@ -139,7 +139,7 @@ header{
     position: relative;
     z-index: 1;
 
-    transition: transform 350ms linear, opacity 250ms linear;
+    transition: transform 400ms linear, opacity 250ms linear;
 }
 
 .nav-toggle-label::before,
@@ -162,8 +162,7 @@ header{
 /* Hamburger menu animation  */
 
 .toggle:checked ~ .nav-toggle-label{
-    transform: rotate(45deg) scale(.7);
-
+    transform: rotate(45deg) translate(3.5rem, -3rem) scale(.7);
 }
 
 .toggle:checked ~ .nav-toggle-label::before{
