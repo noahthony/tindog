@@ -75,10 +75,10 @@ header{
     background-color: var(--secondary);
     border-radius: 5px;
     margin: 0;
-    padding: 5rem 3rem 5rem 2rem;
+    padding: 5rem 1rem 5rem 1.5rem;
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 1rem;
+    top: .5rem;
     transform: scale(0,0);
     transform-origin: top right;
     transition: transform 400ms ease-in-out;
