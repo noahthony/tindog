@@ -61,7 +61,7 @@ header{
 
  nav{
     display: flex;
-    position: relative;
+    /* position: relative; */
     align-items: center;
     justify-content: space-between;
     flex: 1;
@@ -77,8 +77,8 @@ header{
     margin: 0;
     padding: 5rem 3rem 5rem 2rem;
     position: absolute;
-    right: -5rem;
-    top: 30%;
+    right: 0;
+    top: 0;
     transform: scale(0,0);
     transform-origin: top right;
     transition: transform 400ms ease-in-out;
@@ -119,8 +119,8 @@ header{
 
 .nav-toggle-label{
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 3rem;
+    top: 4.5rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -136,7 +136,7 @@ header{
     height: 3px;
     width: 2rem;
     border-radius: 3px;
-    position: relative;
+    position: absolute;
     z-index: 1;
 
     transition: transform 400ms linear, opacity 250ms linear;
@@ -159,10 +159,11 @@ header{
     transition: opacity 250ms ease-in-out 250ms;
 }
 
+
 /* Hamburger menu animation  */
 
 .toggle:checked ~ .nav-toggle-label{
-    transform: rotate(45deg) translate(2.5rem, -1.5rem) scale(.7);
+    transform: rotate(45deg) translate(-1rem,-3rem) scale(.7);
 }
 
 .toggle:checked ~ .nav-toggle-label::before{
